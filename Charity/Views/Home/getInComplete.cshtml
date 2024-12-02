@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Charity.Models.DuAn>
+@using Charity.Helpers;
+<h1 class="display-6  text-center">Dự án đang thực hiện</h1>
+<!-- Causes Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="causes-item d-flex flex-column bg-light border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <h5 class="mb-3">@item.ProjectName</h5>
+                            <p>@StringHelper.Truncate(item.Situation, 50)</p>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid " src="/Content/img/@item.ProjectImage" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="/@ViewBag.meta/@item.meta/@item.IDduan">
+                                    Xem chi tiết
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <a class="btn btn-primary py-2 px-3 me-3" href="/@ViewBag.meta">
+        Tìm hiểu thêm
+        <div class="d-inline-flex btn-sm-square bg-white text-primary rounded-circle ms-2">
+            <i class="fa fa-arrow-right"></i>
+        </div>
+    </a>
+</div>
+

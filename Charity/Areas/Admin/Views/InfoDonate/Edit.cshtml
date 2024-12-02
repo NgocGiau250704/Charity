@@ -1,0 +1,104 @@
+﻿@model Charity.Models.InforDonate
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="padding-left: 5rem">
+    <h2>Edit</h2>
+
+    @using (Html.BeginForm("Edit", "InfoDonate", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>InforDonate</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-group">
+        @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <!-- Ảnh hiện tại từ cơ sở dữ liệu -->
+            <img id="currentImage" style="max-width: 100px" src="~/Content/img/@Model.Image" alt="Current Image" />
+
+            <!-- Ảnh xem trước sẽ hiển thị khi chọn ảnh mới -->
+            <img id="previewImage" style="max-width: 100px; display: none; margin-top: 10px;" alt="Image Preview" />
+
+            <!-- Input để chọn ảnh mới -->
+            <input type="file" name="Image" class="form-control" onchange="showPreview(event)" />
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Số tài khoản", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Banknumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Banknumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Người thụ hưởng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Beneficiary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Beneficiary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ngân hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Bank, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Bank, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="radio">
+                <!-- Tùy chọn Hoạt động (true) -->
+                @Html.RadioButtonFor(model => model.hide, "true", new { @id = "statusActive" })
+                <label for="statusActive">Hoạt động</label>
+            </div>
+            <div class="radio">
+                <!-- Tùy chọn Khóa (false) -->
+                @Html.RadioButtonFor(model => model.hide, "false", new { @id = "statusLocked" })
+                <label for="statusLocked">Khóa</label>
+            </div>
+            @Html.ValidationMessageFor(model => model.hide, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.Label("Ngày tạo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+
+</div>

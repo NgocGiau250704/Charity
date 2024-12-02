@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Charity.Models.InforDonate>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: space-between">
+        <h5>Nguồn nhận đóng góp</h5>
+        <a href="@Url.Action("Add","InfoDonate")" class="nav-link btn btn-secondary m-2">Thêm nguồn nhận đóng góp</a>
+    </div>
+    <table class="table">
+        <tr>
+            <th width="25%">
+                @Html.DisplayName("Nội dung")
+            </th>
+            <th>
+                @Html.DisplayName("Ảnh QR")
+            </th>
+            <th>
+                @Html.DisplayName("Số tài khoản")
+            </th>
+            <th>
+                @Html.DisplayName("Người thụ hưởng")
+            </th>
+            <th>
+                @Html.DisplayName("Ngân hàng")
+            </th>
+           
+            <th>
+                @Html.DisplayName("Hành động")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td style="align-content: center">
+                    <img style="max-width: 100px;" src="/Content/img/@Html.DisplayFor(modelItem => item.Image)" />
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.Banknumber)
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.Beneficiary)
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.Bank)
+                </td>
+                
+                <td style="align-content: center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Chi tiết", "Detail", new { id = item.id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

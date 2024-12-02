@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Charity.Models.Menu>
+<h5 class="text-light mb-4">Truy cập nhanh</h5>
+@foreach (var item in Model)
+{
+    var submenu = Html.Action("getSubmenuFooter", "Layout", new { id = item.id });
+    bool hasSubmenu = !string.IsNullOrEmpty(submenu.ToString());
+    if (hasSubmenu)
+    {
+        @submenu
+    }
+    else
+    {
+        <a class="btn btn-link" href="/@item.meta">@item.name</a>
+    }
+}
+

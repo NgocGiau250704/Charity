@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Charity.Models.DuAn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: space-between">
+        <h5>Dự án đang thực hiện</h5>
+        <a href="@Url.Action("Add","DuAn")" class="nav-link btn btn-secondary m-2">Thêm dự án</a>
+    </div>
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayName("Tên dự án")
+            </th>
+            <th>
+                @Html.DisplayName("Ngày tạo")
+            </th>
+
+            <th>
+                @Html.DisplayName("Trạng thái")
+            </th>
+            <th width="25%">
+                @Html.DisplayName("Thông tin")
+            </th>
+
+            <th>
+                @Html.DisplayName("Hình ảnh")
+            </th>
+            <th>
+                @Html.DisplayName("Hành động")
+            </th>
+
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.datebegin)
+                </td>
+
+                <td style="align-content: center">
+                    @if (item.ProjectState == true)
+                    {
+                        @:Hoàn thành
+                    }
+                    else
+                    {
+                        @:Chưa hoàn thành
+                    }
+                </td>
+
+                <td style="align-content: center">
+                    @*@Html.DisplayFor(modelItem => item.Infor)*@
+                    @Html.Raw(item.Infor)
+                </td>
+
+                <td style="align-content: center">
+                    <img style="max-width: 100px;" src="/Content/img/@Html.DisplayFor(modelItem => item.ProjectImage)" />
+                </td>
+
+                <td style="align-content: center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IDduan }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Chi tiết", "Detail", new { id = item.IDduan }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.IDduan }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@section _Footer
+{
+    <!-- DataTables JavaScript -->
+    <script src="/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+}

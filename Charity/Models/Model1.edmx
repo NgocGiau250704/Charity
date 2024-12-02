@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CharityWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoTaNgan" Type="nvarchar(max)" />
+          <Property Name="MoTaDayDu" Type="nvarchar(max)" />
+          <Property Name="image1" Type="nvarchar(max)" />
+          <Property Name="image2" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="ContactInfor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar(max)" />
+          <Property Name="phone" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Donate">
+          <Key>
+            <PropertyRef Name="IDdonate" />
+          </Key>
+          <Property Name="IDdonate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DonateMoney" Type="int" />
+          <Property Name="PersonDonateName" Type="nvarchar(max)" />
+          <Property Name="Infor" Type="nvarchar(max)" />
+          <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="order" Type="int" />
+          <Property Name="hide" Type="bit" />
+        </EntityType>
+        <EntityType Name="DuAn">
+          <Key>
+            <PropertyRef Name="IDduan" />
+          </Key>
+          <Property Name="IDduan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar(max)" />
+          <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="ProjectState" Type="bit" />
+          <Property Name="TotalMoney" Type="int" />
+          <Property Name="QRcode" Type="int" />
+          <Property Name="Infor" Type="nvarchar(max)" />
+          <Property Name="Situation" Type="nvarchar(max)" />
+          <Property Name="ProjectImage" Type="nvarchar(max)" />
+          <Property Name="Result" Type="nvarchar(max)" />
+          <Property Name="WayToSupport" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="InforDonate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Banknumber" Type="nvarchar(max)" />
+          <Property Name="Beneficiary" Type="nvarchar(max)" />
+          <Property Name="Bank" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="link" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar" MaxLength="50" />
+          <Property Name="hide" Type="int" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="IDnews" />
+          </Key>
+          <Property Name="IDnews" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsImage" Type="nvarchar(max)" />
+          <Property Name="NewsName" Type="nvarchar(max)" />
+          <Property Name="Descrpition" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="submenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idparent" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="link" Type="nvarchar(max)" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar(max)" />
+          <Property Name="password" Type="nvarchar(max)" />
+          <Property Name="userrole" Type="nchar" MaxLength="10" />
+          <Property Name="meta" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="datebegin" Type="smalldatetime" />
+          <Property Name="order" Type="int" />
+        </EntityType>
+        <Association Name="FK_submenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="submenu" Type="Self.submenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="submenu">
+              <PropertyRef Name="idparent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CharityWebsiteModelStoreContainer">
+          <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactInfor" EntityType="Self.ContactInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Donate" EntityType="Self.Donate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DuAn" EntityType="Self.DuAn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InforDonate" EntityType="Self.InforDonate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="submenu" EntityType="Self.submenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_submenu_Menu" Association="Self.FK_submenu_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="submenu" EntitySet="submenu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CharityWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoTaNgan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaDayDu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ContactInfor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Donate">
+          <Key>
+            <PropertyRef Name="IDdonate" />
+          </Key>
+          <Property Name="IDdonate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DonateMoney" Type="Int32" />
+          <Property Name="PersonDonateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Infor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DuAn">
+          <Key>
+            <PropertyRef Name="IDduan" />
+          </Key>
+          <Property Name="IDduan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="ProjectState" Type="Boolean" />
+          <Property Name="TotalMoney" Type="Int32" />
+          <Property Name="QRcode" Type="Int32" />
+          <Property Name="Infor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Situation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WayToSupport" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InforDonate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Banknumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Beneficiary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Int32" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="submenus" Relationship="Self.FK_submenu_Menu" FromRole="Menu" ToRole="submenu" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="IDnews" />
+          </Key>
+          <Property Name="IDnews" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewsName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descrpition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="submenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idparent" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_submenu_Menu" FromRole="submenu" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userrole" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <Property Name="order" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_submenu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="submenu" Type="Self.submenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="submenu">
+              <PropertyRef Name="idparent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CharityWebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abouts" EntityType="Self.About" />
+          <EntitySet Name="ContactInfors" EntityType="Self.ContactInfor" />
+          <EntitySet Name="Donates" EntityType="Self.Donate" />
+          <EntitySet Name="DuAns" EntityType="Self.DuAn" />
+          <EntitySet Name="InforDonates" EntityType="Self.InforDonate" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="submenus" EntityType="Self.submenu" />
+          <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
+          <AssociationSet Name="FK_submenu_Menu" Association="Self.FK_submenu_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="submenu" EntitySet="submenus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CharityWebsiteModelStoreContainer" CdmEntityContainer="CharityWebsiteEntities">
+          <EntitySetMapping Name="Abouts">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MoTaNgan" ColumnName="MoTaNgan" />
+                <ScalarProperty Name="MoTaDayDu" ColumnName="MoTaDayDu" />
+                <ScalarProperty Name="image1" ColumnName="image1" />
+                <ScalarProperty Name="image2" ColumnName="image2" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactInfors">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.ContactInfor">
+              <MappingFragment StoreEntitySet="ContactInfor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donates">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.Donate">
+              <MappingFragment StoreEntitySet="Donate">
+                <ScalarProperty Name="IDdonate" ColumnName="IDdonate" />
+                <ScalarProperty Name="DonateMoney" ColumnName="DonateMoney" />
+                <ScalarProperty Name="PersonDonateName" ColumnName="PersonDonateName" />
+                <ScalarProperty Name="Infor" ColumnName="Infor" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DuAns">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.DuAn">
+              <MappingFragment StoreEntitySet="DuAn">
+                <ScalarProperty Name="IDduan" ColumnName="IDduan" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="ProjectState" ColumnName="ProjectState" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="QRcode" ColumnName="QRcode" />
+                <ScalarProperty Name="Infor" ColumnName="Infor" />
+                <ScalarProperty Name="Situation" ColumnName="Situation" />
+                <ScalarProperty Name="ProjectImage" ColumnName="ProjectImage" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="WayToSupport" ColumnName="WayToSupport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InforDonates">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.InforDonate">
+              <MappingFragment StoreEntitySet="InforDonate">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Banknumber" ColumnName="Banknumber" />
+                <ScalarProperty Name="Beneficiary" ColumnName="Beneficiary" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="IDnews" ColumnName="IDnews" />
+                <ScalarProperty Name="NewsImage" ColumnName="NewsImage" />
+                <ScalarProperty Name="NewsName" ColumnName="NewsName" />
+                <ScalarProperty Name="Descrpition" ColumnName="Descrpition" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="submenus">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.submenu">
+              <MappingFragment StoreEntitySet="submenu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idparent" ColumnName="idparent" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="CharityWebsiteModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userrole" ColumnName="userrole" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

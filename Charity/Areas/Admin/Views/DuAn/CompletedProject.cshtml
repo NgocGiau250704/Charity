@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Charity.Models.DuAn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: center">
+        <h5>Dự án đã hoàn thành</h5>
+    </div>
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayName("Tên dự án")
+            </th>
+            <th>
+                @Html.DisplayName("Ngày tạo")
+            </th>
+
+            <th>
+                @Html.DisplayName("Trạng thái")
+            </th>
+            <th width="25%">
+                @Html.DisplayName("Thông tin")
+            </th>
+
+            <th>
+                @Html.DisplayName("Hình ảnh")
+            </th>
+            <th>
+                @Html.DisplayName("Hành động")
+            </th>
+
+
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.datebegin)
+                </td>
+
+                <td style="align-content: center">
+                    @if (item.ProjectState == true)
+                    {
+                        @:Hoàn thành
+                    }
+                    else
+                    {
+                        @:Chưa hoàn thành
+                    }
+                </td>
+
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.Infor)
+                </td>
+
+                <td style="align-content: center">
+                    <img style="max-width: 100px;" src="/Content/img/@Html.DisplayFor(modelItem => item.ProjectImage)" />
+                </td>
+                <td style="align-content: center">
+                    @Html.ActionLink("Edit", "EditCompleted", new { id = item.IDduan }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Chi tiết", "Detail", new { id = item.IDduan }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "DeleteCompleted", new { id = item.IDduan }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

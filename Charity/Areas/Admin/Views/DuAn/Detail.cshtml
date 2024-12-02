@@ -1,0 +1,100 @@
+﻿@model Charity.Models.DuAn
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="padding: 0 5rem;">
+    <h4>Chi tiết</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên dự án")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Thời gian tạo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datebegin)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Slug")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.meta)
+        </dd>
+
+        
+
+       
+        <dt>
+            @Html.DisplayName("Trạng thái")
+        </dt>
+
+        <dd>
+            @if (Model.ProjectState == true)
+            {
+                @:Đã hoàn thành
+            }
+            else
+            {
+                @:Chưa hoàn thành
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Số tiền")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalMoney)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayName("Thông tin")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Infor)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hoàn cảnh")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Situation)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình ảnh")
+        </dt>
+
+        <dd>
+            <img style="width: 200px; margin: auto" src="~/Content/img/@Html.DisplayFor(model => model.ProjectImage)" />
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayName("Cách thức hỗ trợ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WayToSupport)
+        </dd>
+
+    </dl>
+</div>
+

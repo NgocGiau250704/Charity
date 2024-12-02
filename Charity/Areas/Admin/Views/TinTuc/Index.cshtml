@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Charity.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: space-between">
+        <h5>Tin tức</h5>
+        <a href="@Url.Action("Add","TinTuc")" class="nav-link btn btn-secondary m-2">Thêm tin tức</a>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Hình ảnh")
+            </th>
+            <th>
+                @Html.DisplayName("Tiêu đề")
+            </th>
+            <th>
+                @Html.DisplayName("Trạng thái")
+            </th>
+            <th>
+                @Html.DisplayName("Thời gian")
+            </th>
+            <th>
+                @Html.DisplayName("Hành động")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="align-content: center">
+                    <img style="max-width: 100px;" src="/Content/img/@Html.DisplayFor(modelItem => item.NewsImage)" />
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.NewsName)
+                </td>
+                <td style="align-content: center">
+                    @if (item.hide == true)
+                    {
+                        @:Hoạt động
+                    }
+                    else
+                    {
+                        @:Khóa
+                    }
+                </td>
+
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.datebegin)
+                </td>
+                <td style="align-content: center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IDnews }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Chi tiết", "Detail", new { id = item.IDnews }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.IDnews }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@section _Footer
+{
+    <!-- DataTables JavaScript -->
+    <script src="/Areas/Admin/Content/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/Areas/Admin/Content/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="/Areas/Admin/Content/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+}

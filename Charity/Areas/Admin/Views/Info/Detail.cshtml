@@ -1,0 +1,79 @@
+﻿@model Charity.Models.About
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="padding-left: 5rem">
+    <h4>About</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Mô tả ngắn")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaNgan)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mô tả đầy đủ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTaDayDu)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình ảnh 1")
+        </dt>
+
+        <dd>
+            <img style="width: 200px; margin: auto" src="~/Content/img/@Html.DisplayFor(model => model.image1)" />
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình ảnh 2")
+        </dt>
+
+        <dd>
+            <img style="width: 200px; margin: auto" src="~/Content/img/@Html.DisplayFor(model => model.image2)" />
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Slug")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.meta)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Trạng thái")
+        </dt>
+
+        <dd>
+            @if (Model.hide == true)
+            {
+                @:Hoạt động
+            }
+            else
+            {
+                @:Khóa
+            }
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayName("Ngày đăng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datebegin)
+        </dd>
+
+    </dl>
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model Charity.Models.Donate
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper" style="padding: 0 5rem;">
+    <h2>Chi tiết</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Số tiền Donate")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DonateMoney)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Tên người Donate")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PersonDonateName)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Nội dung Donate")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Infor)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Thời gian Donate")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.datebegin)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+

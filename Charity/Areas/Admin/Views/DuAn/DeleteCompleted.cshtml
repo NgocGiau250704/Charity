@@ -1,0 +1,29 @@
+﻿@model Charity.Models.DuAn
+
+@{
+    ViewBag.Title = "Xóa dự án";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <h2>Xóa dự án</h2>
+
+    <div>
+        <h4>Bạn có chắc chắn muốn xóa dự án này không?</h4>
+        <dl class="dl-horizontal">
+            <dt>Tên dự án</dt>
+            <dd>@Model.ProjectName</dd>
+
+            <dt>Hoàn cảnh</dt>
+            <dd>@Model.Situation</dd>
+        </dl>
+
+        @using (Html.BeginForm("DeleteCompleted", "DuAn", new { id = Model.IDduan }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Hủy", "CompletedProject", null, new { @class = "btn btn-default" })
+        }
+    </div>
+</div>

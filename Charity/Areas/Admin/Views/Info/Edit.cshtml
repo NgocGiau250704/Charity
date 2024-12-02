@@ -1,0 +1,129 @@
+﻿@model Charity.Models.About
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="padding-left: 5rem">
+    <h2>Edit</h2>
+    @using (Html.BeginForm("Edit", "Info", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>About</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                @Html.Label("Mô tả ngắn", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.MoTaNgan, new { @class = "form-control", rows = "5", @value = Model.MoTaNgan })
+                    @Html.ValidationMessageFor(model => model.MoTaNgan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Mô tả đầy đủ", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.MoTaDayDu, new { @class = "form-control", rows = "10", @value = Model.MoTaDayDu })
+                    @Html.ValidationMessageFor(model => model.MoTaDayDu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hình ảnh 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <!-- Ảnh hiện tại từ cơ sở dữ liệu -->
+                    <img id="currentImage" style="max-width: 100px" src="~/Content/img/@Model.image1" alt="Current Image" />
+
+                    <!-- Ảnh xem trước sẽ hiển thị khi chọn ảnh mới -->
+                    <img id="previewImage" style="max-width: 100px; display: none; margin-top: 10px;" alt="Image Preview" />
+
+                    <!-- Input để chọn ảnh mới -->
+                    <input type="file" name="image1" class="form-control" onchange="showPreview(event)" />
+                    @Html.ValidationMessageFor(model => model.image1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hình ảnh 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <!-- Ảnh hiện tại từ cơ sở dữ liệu -->
+                    <img id="currentImage1" style="max-width: 100px" src="~/Content/img/@Model.image2" alt="Current Image" />
+
+                    <!-- Ảnh xem trước sẽ hiển thị khi chọn ảnh mới -->
+                    <img id="previewImage1" style="max-width: 100px; display: none; margin-top: 10px;" alt="Image Preview" />
+
+                    <!-- Input để chọn ảnh mới -->
+                    <input type="file" name="image2" class="form-control" onchange="showPreview1(event)" />
+                    @Html.ValidationMessageFor(model => model.image2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Slug", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.meta, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.meta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="radio">
+                        <!-- Tùy chọn Hoạt động (true) -->
+                        @Html.RadioButtonFor(model => model.hide, "true", new { @id = "statusActive" })
+                        <label for="statusActive">Hoạt động</label>
+                    </div>
+                    <div class="radio">
+                        <!-- Tùy chọn Khóa (false) -->
+                        @Html.RadioButtonFor(model => model.hide, "false", new { @id = "statusLocked" })
+                        <label for="statusLocked">Khóa</label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.hide, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Ngày đăng", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.datebegin, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.datebegin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+@section _Footer
+{
+    <script src="~/Areas/admin/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Areas/admin/Content/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        var editor = CKEDITOR.replace("MoTaNgan");
+        var editor = CKEDITOR.replace("MoTaDayDu", { height: '600px' });
+        customConfig: '/Areas/admin/Content/ckeditor/config.js';
+    </script>
+    <script>
+        $(function () {
+            $("#name").keyup(function () {
+                var text = $.trim($(this).val().toLowerCase());
+                var text_create;
+                text_create = text.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a").replace(/\ /g, '-').replace(/đ/g, "d").replace(/đ/g, "d").replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y").replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u").replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ.+/g, "o").replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ.+/g, "e").replace(/ì|í|ị|ỉ|ĩ/g, "i");
+                $('#meta').val(text_create);
+            }).keyup();
+        });
+    </script>
+}
+

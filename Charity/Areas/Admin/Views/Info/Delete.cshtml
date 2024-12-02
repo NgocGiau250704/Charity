@@ -1,0 +1,29 @@
+﻿@model Charity.Models.About
+
+@{
+    ViewBag.Title = "Xóa giới thiệu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper pr-5" style="padding-left: 5rem">
+
+    <h2>Xóa giới thiệu</h2>
+
+    <div>
+        <h4>Bạn có chắc chắn muốn xóa giới thiệu này không?</h4>
+        <dl class="dl-horizontal">
+            <dt>Mô tả ngắn</dt>
+            <dd>@Model.MoTaNgan</dd>
+
+            <dt>Mô tả đầy đủ</dt>
+            <dd>@Model.MoTaDayDu</dd>
+        </dl>
+
+        @using (Html.BeginForm("Delete", "Info", new { id = Model.id }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-default" })
+        }
+    </div>
+</div>

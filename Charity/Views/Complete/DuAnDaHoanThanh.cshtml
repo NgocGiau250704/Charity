@@ -1,0 +1,53 @@
+﻿@model PagedList.IPagedList<Charity.Models.DuAn>
+@using Charity.Helpers;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Dự Án Đã Hoàn Thành";
+}
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center">
+        <h2 class="display-4 text-white animated slideInDown mb-4">Dự án đã hoàn thành</h2>
+    </div>
+</div>
+<!-- Causes Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="causes-item d-flex flex-column bg-light border-top border-5 border-primary rounded-top overflow-hidden h-100">
+                        <div class="text-center p-4 pt-0">
+                            <h5 class="mb-3">@item.ProjectName</h5>
+                            <p>@StringHelper.Truncate(item.Situation,100)</p>
+                        </div>
+                        <div class="position-relative mt-auto">
+                            <img class="img-fluid" src="/Content/img/@item.ProjectImage" alt="">
+                            <div class="causes-overlay">
+                                <a class="btn btn-outline-primary" href="/@ViewBag.meta/@item.meta/@item.IDduan">
+                                    Xem chi tiết
+                                    <div class="d-inline-flex btn-sm-square bg-primary text-white rounded-circle ms-2">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+        <div class="text-dark pagination-container d-flex justify-content-center">
+            Trang @Html.PagedListPager(Model, page => Url.Action("DuAnDaHoanThanh", new { page }))
+        </div>
+        <!-- Causes End -->
+        <style>
+            .pagination-container .pagination a,
+            .pagination-container .pagination span {
+                font-size: 1.2em;
+                margin: 0 7px; /* Add spacing between numbers */
+            }
+        </style>

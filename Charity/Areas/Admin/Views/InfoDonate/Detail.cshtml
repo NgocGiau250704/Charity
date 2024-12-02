@@ -1,0 +1,81 @@
+﻿@model Charity.Models.InforDonate
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper" style="padding: 0 5rem;">
+    <h2>Detail</h2>
+
+    <div>
+        <h4>InforDonate</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Nội dung")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Message)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Hình ảnh")
+            </dt>
+
+            <dd>
+                <img style="width: 200px; margin: auto" src="~/Content/img/@Html.DisplayFor(model => model.Image)" />
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Số tài khoản")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Banknumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Người thụ hưởng")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Beneficiary)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Ngân hàng")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bank)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Trạng thái")
+            </dt>
+
+            <dd>
+                @if (Model.hide == true)
+                {
+                    @:Hoạt động
+                }
+                else
+                {
+                    @:Khóa
+                }
+            </dd>
+
+
+            <dt>
+                @Html.DisplayName("Ngày tạo")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.datebegin)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+

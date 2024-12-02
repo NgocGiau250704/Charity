@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Charity.Models.Menu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: space-between">
+        <h5>Menu</h5>
+        <a href="@Url.Action("Add","Menu")" class="nav-link btn btn-secondary m-2">Thêm Menu</a>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Tiêu đề")
+            </th>                
+                                 
+            <th>                 
+                @Html.DisplayName("Meta")
+            </th>                
+                                 
+                         
+            <th>                 
+                @Html.DisplayName("Thời gian")
+            </th>                
+            <th>                 
+                @Html.DisplayName("Hành động")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.meta)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.datebegin)
+                </td>
+
+                <td style="align-content: center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Chi tiết", "Detail", new { id = item.id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Charity.Models.About>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div style="display: flex; justify-content: space-between">
+        <h5>Về chúng tôi</h5>
+        <a href="@Url.Action("Add","Info")" class="nav-link btn btn-secondary m-2">Thêm giới thiệu</a>
+    </div>
+    <table class="table">
+        <tr>
+            <th width="40%">
+                @Html.DisplayName("Mô tả ngắn")
+            </th>
+
+            <th>
+                @Html.DisplayName("Hình 1")
+            </th>
+            <th>
+                @Html.DisplayName("Hình 2")
+            </th>
+            <th>
+                @Html.DisplayName("Ngày đăng")
+            </th>
+            <th>
+                @Html.DisplayName("Hành động")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="align-content: center">
+                   @* @Html.DisplayFor(modelItem => item.MoTaNgan)*@
+                    @Html.Raw(item.MoTaNgan)
+                </td>
+                <td style="align-content: center">
+                    <img style="max-width: 100px;" src="/Content/img/@Html.DisplayFor(modelItem => item.image1)" />
+
+                </td>
+                <td style="align-content: center">
+                    <img style="max-width: 100px;" src="/Content/img/@Html.DisplayFor(modelItem => item.image2)" />
+                </td>
+                <td style="align-content: center">
+                    @Html.DisplayFor(modelItem => item.datebegin)
+                </td>
+                <td style="align-content: center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Chi tiết", "Detail", new { id = item.id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

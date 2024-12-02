@@ -1,0 +1,50 @@
+﻿@model Charity.Models.Donate
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="padding: 0 20px">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Donate</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Số tiền Donate", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.DonateMoney, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DonateMoney, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Tên người Donate", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.PersonDonateName, new { @class = "form-control", rows = "5", id = "PersonDonateName" })
+                    @Html.ValidationMessageFor(model => model.PersonDonateName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nội dung Donate", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Infor, new { htmlAttributes=new{ @class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Infor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

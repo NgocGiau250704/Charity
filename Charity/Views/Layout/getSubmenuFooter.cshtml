@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Charity.Models.submenu>
+@foreach (var item in Model)
+{
+    <a class="btn btn-link" href="@item.meta">@item.name</a>
+}
+

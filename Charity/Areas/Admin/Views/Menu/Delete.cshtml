@@ -1,0 +1,28 @@
+﻿@model Charity.Models.Menu
+
+@{
+    ViewBag.Title = "Xóa menu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <h2>Xóa menu</h2>
+
+    <div>
+        <h4>Bạn có chắc chắn muốn xóa menu này không?</h4>
+        <dl class="dl-horizontal">
+            <dt>Tên menu</dt>
+            <dd>@Model.name</dd>
+
+            
+        </dl>
+
+        @using (Html.BeginForm("Delete", "Menu", new { id = Model.id }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-default" })
+        }
+    </div>
+</div>

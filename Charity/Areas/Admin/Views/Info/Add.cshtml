@@ -1,0 +1,62 @@
+﻿@model Charity.Models.About
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="padding: 0 20px">
+    @using (Html.BeginForm("Add", "Info", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>About</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MoTaNgan, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.MoTaNgan, new { @class = "form-control", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.MoTaNgan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MoTaDayDu, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.MoTaDayDu, new { @class = "form-control", rows = "10" })
+                    @Html.ValidationMessageFor(model => model.MoTaDayDu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("avata", "Hình ảnh 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="image1" class="form-control" />
+                    <!-- Nếu cần, bạn có thể thêm ValidationMessage -->
+                    <!-- @Html.ValidationMessage("image1", "", new { @class = "text-danger" }) -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("avata", "Hình ảnh 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="image2" class="form-control" />
+                    <!-- Nếu cần, bạn có thể thêm ValidationMessage -->
+                    <!-- @Html.ValidationMessage("image2", "", new { @class = "text-danger" }) -->
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
