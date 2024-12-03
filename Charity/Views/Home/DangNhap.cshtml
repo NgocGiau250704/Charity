@@ -18,7 +18,7 @@
                     {
                         <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
                     }
-                    <form method="post" action="">
+                    <form method="post" action="@Url.Action("DangNhap", "Home")">
                         <div class="form-group">
                             <label for="username">Tên người dùng</label>
                             <input type="text" class="form-control" id="username" name="username" required />

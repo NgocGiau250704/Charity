@@ -1,10 +1,12 @@
 ﻿using Charity.Models;
+using Microsoft.Ajax.Utilities;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Charity.Controllers
 {
@@ -93,5 +95,23 @@ namespace Charity.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult DangNhap(string username, string password)
+        {
+            var user = db.UserAccounts.FirstOrDefault(u => u.username == username && u.password == password);
+            if (user != null)
+            {
+                // Authentication successful, redirect to admin page
+                FormsAuthentication.SetAuthCookie(username, false);
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
+            else
+            {
+                // Authentication failed, show error message
+                ViewBag.ErrorMessage = "Tên người dùng hoặc mật khẩu không đúng.";
+                return View();
+            }
+        }
     }
-}
+} 
