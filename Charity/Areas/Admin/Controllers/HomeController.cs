@@ -13,5 +13,18 @@ namespace Charity.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            // Xóa thông tin đăng nhập (session, cookie, v.v.)
+            Session.Clear();
+            Session.Abandon();
+
+            // Nếu sử dụng FormsAuthentication
+            // FormsAuthentication.SignOut();
+
+            // Chuyển hướng về trang chủ (ngoài Area)
+            return RedirectToAction("TrangChu", "Home", new { area = "" });
+        }
     }
 }
